@@ -26,19 +26,14 @@
 *.a
 *.lib
 
-# Executables
-*.exe
-*.out
-*.app
-
 .vs/
 **.sln
 **.vcxproj
 **.vcxproj.filters
 **.vcxproj.user
 
-**/bin/
 !premake5
+**/bin/
 bin-int/
 
 .log
