@@ -30,3 +30,15 @@
 *.exe
 *.out
 *.app
+
+.vs/
+**.sln
+**.vcxproj
+**.vcxproj.filters
+**.vcxproj.user
+
+**/bin/
+!premake5
+bin-int/
+
+.log
