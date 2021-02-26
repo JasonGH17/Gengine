@@ -10,10 +10,13 @@ namespace DeskBrew {
 		Application();
 		~Application();
 
+
 		void Run();
 
 	private:
-		Logger* log;
+		Logger *log = new Logger;
 	};
+
+	Application* CreateApplication();
 }
 

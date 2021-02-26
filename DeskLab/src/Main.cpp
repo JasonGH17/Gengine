@@ -12,9 +12,7 @@ public:
 	}
 };
 
-int main()
+DeskBrew::Application* DeskBrew::CreateApplication()
 {
-	Sandbox* sandbox = new Sandbox();
-	sandbox->Run();
-	delete sandbox;
+	return new Sandbox();
 }
