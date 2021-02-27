@@ -17,7 +17,7 @@ namespace DeskBrew {
 		Logger();
 		~Logger();
 
-		void Init();
+		void Init(bool Verbose);
 		std::string TimeLog();
 
 		void TRACE(const char* str, bool isCore);

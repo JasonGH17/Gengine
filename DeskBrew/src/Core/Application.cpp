@@ -3,7 +3,7 @@
 namespace DeskBrew {
 	Application::Application()
 	{
-		log->Init(); 
+		log->Init(true);
 	}
 
 	Application::~Application()
@@ -12,6 +12,10 @@ namespace DeskBrew {
 
 	void Application::Run()
 	{
-		while (true);
+		if (win->Init())
+		{
+			while (win->isRun())
+				win->Broadcast();
+		}
 	}
 }

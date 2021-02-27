@@ -4,19 +4,23 @@ namespace DeskBrew
 {
 	Logger::Logger() {}
 	Logger::~Logger() {}
-	void Logger::Init() { 
+	void Logger::Init(bool verbose = true) {
 		m_Initialized = true;
-		INFO("Core Logger Initialized", true);
-		INFO("App Logger Initialized", false);
+		if (verbose)
+		{
+			INFO("Core Logger Initialized", true);
+			INFO("App Logger Initialized", false);
+		}
 	}
 	std::string Logger::TimeLog() {
-		std::time_t t = std::time(0);
-		std::tm* now = std::localtime(&t);
+		time_t curr_time;
+		tm* curr_tm;
+		char time_string[100];
+		time(&curr_time);
+		curr_tm = localtime(&curr_time);
+		strftime(time_string, 50, "[%T]", curr_tm);
 		std::stringstream ss;
-		ss << "[" << (now->tm_hour) << ':'
-			<< (now->tm_min) << ':'
-			<< now->tm_sec
-			<< "] ";
+		ss << time_string;
 		return ss.str();
 	}
 
