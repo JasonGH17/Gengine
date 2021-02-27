@@ -4,7 +4,11 @@ namespace DeskBrew
 {
 	Logger::Logger() {}
 	Logger::~Logger() {}
-	void Logger::Init() { m_Initialized = true; }
+	void Logger::Init() { 
+		m_Initialized = true;
+		INFO("Core Logger Initialized", true);
+		INFO("App Logger Initialized", false);
+	}
 	std::string Logger::TimeLog() {
 		std::time_t t = std::time(0);
 		std::tm* now = std::localtime(&t);
@@ -31,7 +35,7 @@ namespace DeskBrew
 		{
 			HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);	SetConsoleTextAttribute(hConsole, 71);
 			std::string time = TimeLog();
-			std::cout << time << (isCore ? "Brew: " : "App: ") << str << std::endl;
+			std::cout << time << (isCore ? "Brew::FATAL - " : "App::FATAL - ") << str << std::endl;
 		}
 	}
 	void Logger::ERROR(const char* str, bool isCore)
@@ -40,7 +44,7 @@ namespace DeskBrew
 		{
 			HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);	SetConsoleTextAttribute(hConsole, 4);
 			std::string time = TimeLog();
-			std::cout << time << (isCore ? "Brew: " : "App: ") << str << std::endl;
+			std::cout << time << (isCore ? "Brew::ERROR - " : "App::ERROR - ") << str << std::endl;
 		}
 	}
 	void Logger::INFO(const char* str, bool isCore)
