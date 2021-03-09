@@ -10,6 +10,9 @@ workspace "DeskBrew"
 
 outDir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 
+IncludeDir = {}
+IncludeDir["WinGL"] = "WinGL/src"
+
 project "DeskBrew"
     location "DeskBrew"
     kind "SharedLib"
@@ -20,8 +23,14 @@ project "DeskBrew"
 
 	includedirs
     {
-        "DeskBrew/src"
+        "DeskBrew/src",
+		"%{IncludeDir.WinGL}"
     }
+
+	links
+	{
+		"WinGL"
+	}
 
     files
 	{
@@ -63,32 +72,32 @@ project "DeskBrew"
 
 
 project "DeskLab"
-    location "DeskLab"
-    kind "ConsoleApp"
-    language "C++"
+	location "DeskLab"
+	kind "ConsoleApp"
+	language "C++"
+	
+	targetdir ("bin/" ..outDir.. "/%{prj.name}")
+	objdir ("bin-int/" ..outDir.. "/%{prj.name}")
 
-    targetdir ("bin/" ..outDir.. "/%{prj.name}")
-    objdir ("bin-int/" ..outDir.. "/%{prj.name}")
-
-    files
-    {
-        "DeskLab/src/**.h",
+	files
+	{
+		"DeskLab/src/**.h",
 		"DeskLab/src/**.cpp"
-    }
-    includedirs
-    {
-        "DeskBrew/src"
-    }
-    links
-    {
-        "DeskBrew"
-    }
+	}
+	includedirs
+	{
+		"DeskBrew/src"
+	}
+	links
+	{
+		"DeskBrew"
+	}
 
-    filter "system:windows"
+	filter "system:windows"
 		cppdialect "C++17"
 		staticruntime "On"
 		systemversion "latest"
-
+	
 		defines
 		{
 			"DB_PLATFORM_WINDOWS"
@@ -98,13 +107,44 @@ project "DeskLab"
 		buildoptions "/MDd"
 		defines "DB_DEBUG"
 		symbols "On"
-
+	
 	filter "configurations:Release"
 		buildoptions "/MD"
 		defines "DB_RELEASE"
 		optimize "On"
-
+	
 	filter "configurations:Dist"
 		buildoptions "/MD"
 		defines "DB_DIST"
 		optimize "On"
+
+project "WinGL"
+    location "WinGL"
+    kind "StaticLib"
+    language "C++"
+
+    targetdir ("bin/" ..outDir.. "/%{prj.name}")
+    objdir ("bin-int/" ..outDir.. "/%{prj.name}")
+
+    files
+    {
+        "WinGL/src/**.h",
+		"WinGL/src/**.cpp"
+    }
+
+    filter "system:windows"
+		systemversion "latest"
+		staticruntime "On"
+
+	filter "configurations:Debug"
+		runtime "Debug"
+		symbols "on"
+
+	filter "configurations:Release"
+		runtime "Release"
+		optimize "on"
+
+	filter "configurations:Dist"
+		runtime "Release"
+		optimize "on"
+		

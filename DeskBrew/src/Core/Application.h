@@ -2,7 +2,7 @@
 
 #include "Core.h"
 #include "Logger/Logger.h"
-#include "Window/Windows/WinWindow.h"
+#include "../../WinGL/src/include/WinGL.h"
 
 namespace DeskBrew {
 	class DB_API Application
@@ -15,7 +15,7 @@ namespace DeskBrew {
 
 	private:
 		Logger *log = new Logger;
-		WinWindow* win = new WinWindow();
+		WinGL* wnd = new WinGL;
 	};
 
 	Application* CreateApplication();

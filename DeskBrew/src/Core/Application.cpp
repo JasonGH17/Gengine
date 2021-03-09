@@ -12,10 +12,6 @@ namespace DeskBrew {
 
 	void Application::Run()
 	{
-		if (win->Init())
-		{
-			while (win->isRun())
-				win->Broadcast();
-		}
+		wnd->Init(L"DeskBrewWND", L"DeskBrew");
 	}
 }
