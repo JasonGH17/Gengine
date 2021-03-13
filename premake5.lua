@@ -11,7 +11,7 @@ workspace "DeskBrew"
 outDir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 
 IncludeDir = {}
-IncludeDir["WinGL"] = "WinGL/src"
+IncludeDir["WinGL"] = "WinGL/include"
 
 project "DeskBrew"
     location "DeskBrew"
@@ -23,7 +23,7 @@ project "DeskBrew"
 
 	includedirs
     {
-        "DeskBrew/src",
+        "%{prj.name}/src",
 		"%{IncludeDir.WinGL}"
     }
 
@@ -81,8 +81,8 @@ project "DeskLab"
 
 	files
 	{
-		"DeskLab/src/**.h",
-		"DeskLab/src/**.cpp"
+		"%{prj.name}/src/**.h",
+		"%{prj.name}/src/**.cpp"
 	}
 	includedirs
 	{
@@ -128,15 +128,32 @@ project "WinGL"
 
     files
     {
-        "WinGL/src/**.h",
-		"WinGL/src/**.cpp"
+		"%{prj.name}/include/**.h",
+        "%{prj.name}/src/**.h",
+		"%{prj.name}/src/**.cpp"
     }
+	links
+	{
+		"opengl32.lib",
+		"glu32.lib",
+		"glew32.lib"
+	}
+	defines
+	{
+		"WIN32_LEAN_AND_MEAN"
+	}
+	includedirs
+	{
+		"%{prj.name}/include",
+		"%{prj.name}/src"
+	}
 
     filter "system:windows"
 		systemversion "latest"
 		staticruntime "On"
 
 	filter "configurations:Debug"
+	buildoptions "/MDd"
 		runtime "Debug"
 		symbols "on"
 

@@ -12,6 +12,9 @@ namespace DeskBrew {
 
 	void Application::Run()
 	{
-		wnd->Init(L"DeskBrewWND", L"DeskBrew");
+		WindowClass window;
+		if (!window.Init())
+			return;
+		window.Run();
 	}
 }

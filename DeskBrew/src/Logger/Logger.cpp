@@ -9,7 +9,7 @@ namespace DeskBrew
 		if (verbose)
 		{
 			INFO("Core Logger Initialized", true);
-			INFO("App Logger Initialized", false);
+			INFO("App Logger Initialized\n", false);
 		}
 	}
 	std::string Logger::TimeLog() {
