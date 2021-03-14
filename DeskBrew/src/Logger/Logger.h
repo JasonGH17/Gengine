@@ -5,44 +5,44 @@
 
 #undef ERROR
 
-#define TRACE(x) {\
+#define TRACE(x, filename) {\
 	HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);	SetConsoleTextAttribute(hConsole, 15);\
-	std::cout << "[" << __TIME__ << "] App:Trace - " << x << std::endl;\
+	std::cout << "[" << __TIME__ << "] App:Trace - " << x << " (in file: " << filename << "::" << __FUNCTION__ << "(Line:" << __LINE__ << "))" << std::endl;\
 }
-#define FATAL(x) {\
+#define FATAL(x, filename) {\
 	HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);	SetConsoleTextAttribute(hConsole, 71);\
-	std::cout << "[" << __TIME__ << "] App:Fatal -" << x << std::endl;\
+	std::cout << "[" << __TIME__ << "] App:Fatal -" << x << " (in file: " << filename << "::" << __FUNCTION__ << "(Line:" << __LINE__ << "))" << std::endl;\
 }
-#define ERROR(x) {\
+#define ERROR(x, filename) {\
 	HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);	SetConsoleTextAttribute(hConsole, 4);\
-	std::cout << "[" << __TIME__ << "] App:Error - " << x << std::endl;\
+	std::cout << "[" << __TIME__ << "] App:Error - " << x << " (in file: " << filename << "::" << __FUNCTION__ << "(Line:" << __LINE__ << "))" << std::endl;\
 }
-#define INFO(x) {\
+#define INFO(x, filename) {\
 	HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);	SetConsoleTextAttribute(hConsole, 10);\
-	std::cout << "[" << __TIME__ << "] App:Info - " << x << std::endl;\
+	std::cout << "[" << __TIME__ << "] App:Info - " << x << " (in file: " << filename << "::" << __FUNCTION__ << "(Line:" << __LINE__ << "))" << std::endl;\
 }
-#define WARN(x) {\
+#define WARN(x, filename) {\
 	HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);	SetConsoleTextAttribute(hConsole, 6);\
-	std::cout << "[" << __TIME__ << "] App:Warn - " << x << std::endl;\
+	std::cout << "[" << __TIME__ << "] App:Warn - " << x << " (in file: " << filename << "::" << __FUNCTION__ << "(Line:" << __LINE__ << "))" << std::endl;\
 }
 
-#define DTRACE(x) {\
+#define DBTRACE(x, filename) {\
 	HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);	SetConsoleTextAttribute(hConsole, 15);\
-	std::cout << "[" << __TIME__ << "] Brew:Trace - " << x << std::endl;\
+	std::cout << "[" << __TIME__ << "] Brew:Trace - " << x << " (in file: " << filename << "::" << __FUNCTION__ << "(Line:" << __LINE__ << "))" << std::endl;\
 }
-#define DFATAL(x) {\
+#define DBFATAL(x, filename) {\
 	HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);	SetConsoleTextAttribute(hConsole, 71);\
-	std::cout << "[" << __TIME__ << "] Brew:Fatal - " << x << std::endl;\
+	std::cout << "[" << __TIME__ << "] Brew:Fatal - " << x << " (in file: " << filename << "::" << __FUNCTION__ << "(Line:" << __LINE__ << "))" << std::endl;\
 }
-#define DERROR(x) {\
+#define DBERROR(x, filename) {\
 	HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);	SetConsoleTextAttribute(hConsole, 4);\
-	std::cout << "[" << __TIME__ << "] Brew:Error - " << x << std::endl;\
+	std::cout << "[" << __TIME__ << "] Brew:Error - " << x << " (in file: " << filename << "::" << __FUNCTION__ << "(Line:" << __LINE__ << "))" << std::endl;\
 }
-#define DINFO(x) {\
+#define DBINFO(x, filename) {\
 	HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);	SetConsoleTextAttribute(hConsole, 10);\
-	std::cout << "[" << __TIME__ << "] Brew:Info - " << x << std::endl;\
+	std::cout << "[" << __TIME__ << "] Brew:Info - " << x << " (in file: " << filename << "::" << __FUNCTION__ << "(Line:" << __LINE__ << "))" << std::endl;\
 }
-#define DWARN(x) {\
+#define DBWARN(x, filename) {\
 	HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);	SetConsoleTextAttribute(hConsole, 6);\
-	std::cout << "[" << __TIME__ << "] Brew:Warn - " << x << std::endl;\
+	std::cout << "[" << __TIME__ << "] Brew:Warn - " << x << " (in file: " << filename << "::" << __FUNCTION__ << "(Line:" << __LINE__ << "))" << std::endl;\
 }
