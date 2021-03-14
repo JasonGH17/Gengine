@@ -4,7 +4,7 @@
 
 class WinGL {
 public:
-	WinGL(/*HINSTANCE hInstance*/);
+	WinGL();
 	virtual ~WinGL(void);
 
 	int Run();

@@ -12,9 +12,6 @@ namespace DeskBrew {
 		~Application();
 
 		void Run();
-
-	private:
-		Logger* log = new Logger;;
 	};
 
 	Application* CreateApplication();

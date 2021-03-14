@@ -3,7 +3,6 @@
 namespace DeskBrew {
 	Application::Application()
 	{
-		log->Init(true);
 	}
 
 	Application::~Application()
@@ -15,6 +14,7 @@ namespace DeskBrew {
 		WindowClass window;
 		if (!window.Init())
 			return;
+		INFO("Window initialized");
 		window.Run();
 	}
 }

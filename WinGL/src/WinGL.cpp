@@ -14,11 +14,11 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
 
 WinGL::~WinGL(void) {}
 
-WinGL::WinGL(/*HINSTANCE hInstance*/)
+WinGL::WinGL()
 {
-	m_hInstance = /*hInstance*/NULL;
+	m_hInstance = NULL;
 	m_hwnd = NULL;
-	m_style = WS_OVERLAPPED | WS_SYSMENU | WS_CAPTION | WS_MINIMIZEBOX;
+	m_style = WS_OVERLAPPED | WS_SYSMENU | WS_CAPTION | WS_MINIMIZEBOX | WS_SIZEBOX | WS_MAXIMIZEBOX;
 	m_hDC = NULL;
 	m_hRC = NULL;
 	m_width = 1280;
@@ -157,12 +157,27 @@ bool WinGL::Init()
 
 LRESULT WinGL::EventProc(HWND hwnd, UINT u_msg, WPARAM wParam, LPARAM lParam)
 {
+	PAINTSTRUCT ps;
+	
 	switch (u_msg)
 	{
 	case WM_DESTROY:
 	{
 		PostQuitMessage(0);
 		return 0;
+	}
+	case WM_PAINT:
+	{
+		Render();
+		BeginPaint(hwnd, &ps);
+		EndPaint(hwnd, &ps);
+		break;
+	}
+	case WM_SIZE:
+	{
+		glViewport(0, 0, LOWORD(lParam), HIWORD(lParam));
+		PostMessage(hwnd, WM_PAINT, 0, 0);
+		break;
 	}
 	default:
 		return DefWindowProc(hwnd, u_msg, wParam, lParam);
